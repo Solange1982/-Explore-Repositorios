@@ -45,11 +45,25 @@ function App() {
     localStorage.setItem("favorites", JSON.stringify(updated));
   };
 
-  useEffect(() => {
-    if (!showFavorites) {
-      fetchRepos();
-    }
-  }, [page, sort]);
+  
+useEffect(() => {
+  const params = new URLSearchParams(window.location.search);
+  const token = params.get("token");
+
+  if (token) {
+    localStorage.setItem("jwt", token);
+    alert("Login com GitHub realizado com sucesso!");
+  
+    window.history.replaceState({}, "", "/");
+  }
+}, []);
+
+useEffect(() => {
+  if (!showFavorites) {
+    fetchRepos();
+  }
+}, [page, sort]);
+
 
   const displayedRepos = showFavorites ? favorites : repos;
 
