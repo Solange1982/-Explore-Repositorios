@@ -22,6 +22,7 @@ const handleGitHubCallback = async (req, res) => {
   }
 
   try {
+    console.log("Código recebido:", code);
     // Trocar code por access_token
     const tokenResponse = await axios.post(
       'https://github.com/login/oauth/access_token',
@@ -83,11 +84,15 @@ const handleGitHubCallback = async (req, res) => {
 
     // Responde com o token (pode trocar por redirecionamento depois)
     const frontendRedirectUrl = `http://localhost:5173/?token=${jwtToken}`;
+res.redirect(frontendRedirectUrl);
+
   } catch (err) {
-    console.error('Erro na autenticação:', err.response?.data || err.message || err);
-  res.status(500).json({ error: 'Falha na autenticação com GitHub' });
+  console.error("Erro na autenticação:", err.response?.data || err.message || err);
+  res.status(500).json({ error: "Falha na autenticação com GitHub" });
+}
+
   }
-};
+;
 
 module.exports = {
   redirectToGitHub,

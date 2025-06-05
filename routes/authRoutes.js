@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { redirectToGitHub, handleGitHubCallback } = require('../controllers/authController');
+const {redirectToGitHub, handleGitHubCallback} = require('../controllers/authController');
 
 // Inicia o login com GitHub
 router.get('/auth/github', redirectToGitHub);

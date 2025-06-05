@@ -11,7 +11,7 @@ const PORT = process.env.PORT || 4000;
 
 // Importa as rotas de autenticação
 const authRoutes = require('./routes/authRoutes');
-
+app.use("/", authRoutes);
 // --- Middlewares Globais ---
 // A ordem é importante! CORS e express.json() devem vir antes das suas rotas.
 
@@ -33,4 +33,5 @@ app.get('/', (req, res) => {
 // --- Inicialização do Servidor ---
 app.listen(PORT, () => {
   console.log(`Servidor rodando na porta ${PORT}`);
-});
+}); // const authRoutes = require('./routes/authRoutes');
+// app.use("/", authRoutes);

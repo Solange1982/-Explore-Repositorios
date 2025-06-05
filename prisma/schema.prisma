@@ -15,3 +15,12 @@ model Favorite {
   repoUrl   String
   user      User     @relation(fields: [userId], references: [id])
 }
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {      
+  provider = "prisma-client-js"
+}
